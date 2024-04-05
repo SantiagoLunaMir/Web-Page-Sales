@@ -5,7 +5,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
+    background-color: #ffffff;
 }
 /* Estilos para el contenedor del logo y texto */
 #logo {
@@ -129,7 +129,7 @@ nav ul li a {
     color: white;
     display: flex;
     flex-direction: column; 
-    margin-right: 1.31%;
+    margin-right: 1.31%; /*Quitar esta si se deja al 50 el width*/
 }
 
 /* Contenedor de 3 coches laterales */
@@ -157,8 +157,9 @@ nav ul li a {
 
 /* Pie de página */
 footer {
-    background-color: #333;
+    background-color: #000000;
     color: #fff;
     text-align: center;
     padding: 10px;
+    margin-top: 5%;
 }
