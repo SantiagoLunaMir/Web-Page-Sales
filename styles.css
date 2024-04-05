@@ -124,11 +124,12 @@ nav ul li a {
 
 /* Contenedor de reseña y botón más */
 .rigth50 {
-    width: 50%; 
+    width: 48.69%; /*50%*/
     background-color: #000000;
     color: white;
     display: flex;
     flex-direction: column; 
+    margin-right: 1.31%;
 }
 
 /* Contenedor de 3 coches laterales */
