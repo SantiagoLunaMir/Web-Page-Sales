@@ -2,10 +2,16 @@
 
 /* Estilos generales */
 body {
-    font-family: Arial, sans-serif;
+    /*font-family: Arial, sans-serif;*/
     margin: 0;
     padding: 0;
     background-color: #ffffff;
+    font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0;
 }
 /* Estilos para el contenedor del logo y texto */
 #logo {
