@@ -24,7 +24,7 @@
                 <a href="usados.html">USADOS</a>
                 <a href="#">VENDER</a>
                 <a href="contacto.html">CONTACTO</a>
-                <a href="login.php" style="color: gray; font-size: 1.2vw;">INICIAR SESIÓN</a>
+                <a href="login.html"><img src="login.png" width="1.5%" height="0.75%" alt="Lupa"></a>
             </div>
         </nav>
     </header>
@@ -33,15 +33,17 @@
         <section id="login-section">
             <div class="login-container">
                 <h2>Iniciar sesión</h2>
-                <form action="procesar_login.php" method="POST">
-                    <label for="username">Nombre de usuario:</label>
-                    <input type="text" id="username" name="username" required><br><br>
+                <form action="./logica/login.php" method="POST">
+                    <label for="user">Nombre de usuario:</label>
+                    <input type="text" name="user" required><br><br>
 
                     <label for="password">Contraseña:</label>
                     <input type="password" id="password" name="password" required><br><br>
 
                     <input type="submit" value="Iniciar sesión">
+                    
                 </form>
+                <p>¿No tienes una cuenta? <a href="registro.html">Regístrate aquí</a>.</p> 
             </div>
         </section>
     </main>
