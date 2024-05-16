@@ -2,8 +2,14 @@
     session_start();
     if(isset($_SESSION['usuario'])){
         //sesion activa
-        header("Location: http://localhost/Proyecto_Web/index.html");
+        header("Location: http://localhost/Proyecto_Web/index.php");
         return;
+    }
+
+    $error_message = ''; // Inicializa la variable de mensaje de error
+
+    if(isset($_GET['error'])) {
+        $error_message = $_GET['error'];
     }
 ?>
 
@@ -39,6 +45,12 @@
 <main>
     <section id="register-section">
         <h2>Registro de Usuario</h2>
+        <?php 
+            // Mostrar mensajes de error
+            if(!empty($error_message)) {
+                echo "<p style='color: red;'>$error_message</p>";
+            }
+        ?>
         <form action="./logica/registro.php" method="POST">
             <label for="username">Nombre de usuario:</label><br>
             <input type="text" id="username" name="username" required><br><br>
@@ -70,3 +82,4 @@
 
 </body>
 </html>
+

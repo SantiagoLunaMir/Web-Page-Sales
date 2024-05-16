@@ -75,6 +75,30 @@
             Contacto: ventas@redcar.com o utiliza nuestro teléfono: +52 12345678
         </div>
         </div>
+        <?php
+            session_start();
+            if (isset($_SESSION['username']) && isset($_SESSION['rol'])) {
+                $username = $_SESSION['username'];
+                $rol = $_SESSION['rol'];
+                $rol_text = '';
+
+                switch ($rol) {
+                    case 1:
+                        $rol_text = 'Administrador';
+                        break;
+                    case 2:
+                        $rol_text = 'Vendedor';
+                        break;
+                    case 3:
+                        $rol_text = 'Comprador';
+                        break;
+                    default:
+                        $rol_text = 'Rol desconocido';
+                }
+
+                echo '<div>Bienvenido, ' . $username . ' (' . $rol_text . ')</div>';
+            }
+            ?>
     </div>
 </footer>
 
