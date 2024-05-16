@@ -6,11 +6,12 @@
         return;
     }
 
-    $error_message = ''; // Inicializa la variable de mensaje de error
+    $error_message = 'Error al procesar'; // Inicializa la variable de mensaje de error
 
     if(isset($_GET['error'])) {
         $error_message = $_GET['error'];
     }
+    
 ?>
 
 
@@ -30,14 +31,22 @@
             <a href="index.html"><img src="Logored.jpg" width="4%" height="3%" alt="Logo de REDCAR"></a>
             <a href="index.html">REDCAR</a>
             <a href="#"><img src="lupa.png" width="1.5%" height="0.75%" alt="Lupa"></a>
-            <a href="index.html" style="color: gray; font-size: 1.2vw;">INICIO</a>
+            <a href="index.html" >INICIO</a>
             <a href="comprar.html">COMPRAR</a>
             <a href="nuevos.html">NUEVOS</a>
             <a href="usados.html">USADOS</a>
             <a href="#">VENDER</a>
             <a href="contacto.html">CONTACTO</a>
-            <a href="registro.php">REGISTRO</a> <!-- Enlace al formulario de registro -->
-            <a href="#"><img src="login.png" width="1.5%" height="0.75%" alt="Lupa"></a>
+            <?php
+                //session_start();
+                if (isset($_SESSION['user'])) {
+                // Si el usuario ha iniciado sesión, muestra la imagen de logout
+                    echo '<a href="logout.php"><img src="logout.png" width="1.5%" height="0.75%" alt="Logout"></a>';
+                } else {
+                // Si el usuario no ha iniciado sesión, muestra la imagen de login
+                    echo '<a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>';
+                }
+            ?>
         </div>
     </nav>
 </header>

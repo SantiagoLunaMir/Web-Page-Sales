@@ -24,7 +24,14 @@
                 <a href="usados.html">USADOS</a>
                 <a href="#">VENDER</a>
                 <a href="contacto.html">CONTACTO</a>
-                <a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Lupa"></a>
+                <?php
+                    session_start();
+                    if (isset($_SESSION['user'])) {
+                        echo '<a href="logout.php"><img src="logout.png" width="1.5%" height="0.75%" alt="Logout"></a>';
+                    } else {
+                        echo '<a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>';
+                    }
+                ?>
             </div>
         </nav>
     </header>
@@ -69,36 +76,21 @@
 </section>
 
 <footer> 
-<!-- Aquí puedes agregar la sección de pie de página con enlaces adicionales, íconos de redes sociales, etc. --> 
     <div class=""><!-- Contenedor de contacto -->
+    <?php
+        //session_start();
+        if (isset($_SESSION['saludo'])) {
+            echo "<p>{$_SESSION['saludo']}</p>";
+            // Una vez que el saludo se ha mostrado, puedes eliminarlo de la sesión para que no se muestre de nuevo
+            unset($_SESSION['saludo']);
+        }
+    ?>
         <div class="">
             Contacto: ventas@redcar.com o utiliza nuestro teléfono: +52 12345678
         </div>
         </div>
-        <?php
-            session_start();
-            if (isset($_SESSION['username']) && isset($_SESSION['rol'])) {
-                $username = $_SESSION['username'];
-                $rol = $_SESSION['rol'];
-                $rol_text = '';
+    
 
-                switch ($rol) {
-                    case 1:
-                        $rol_text = 'Administrador';
-                        break;
-                    case 2:
-                        $rol_text = 'Vendedor';
-                        break;
-                    case 3:
-                        $rol_text = 'Comprador';
-                        break;
-                    default:
-                        $rol_text = 'Rol desconocido';
-                }
-
-                echo '<div>Bienvenido, ' . $username . ' (' . $rol_text . ')</div>';
-            }
-            ?>
     </div>
 </footer>
 

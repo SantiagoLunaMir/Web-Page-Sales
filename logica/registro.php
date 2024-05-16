@@ -26,7 +26,7 @@
 
     try{
         mysqli_query($conexion, $sql);
-        header("Location: http://localhost/Proyecto_Web/index.php");//Hacer un saludo si tiene ya una cuenta y sus estado
+        header("Location: http://localhost/Proyecto_Web/login.php");//Hacer un saludo si tiene ya una cuenta y sus estado
     }catch(Exception $e){
         header("Location: http://localhost/Proyecto_Web/registro.php?error=" . $e->getMessage());
     }
