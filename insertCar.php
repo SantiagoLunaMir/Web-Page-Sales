@@ -46,9 +46,21 @@
     </header>
 
     <h1>Insertar Carro</h1>
-<form action="logica/insertCar.php" method="POST" enctype="multipart/form-data">
-    <label for="marca">Marca</label>
-    <input name="marca" type="text" required>
+    <form action="logica/insertCar.php" method="POST" enctype="multipart/form-data">
+        <label for="marca">Marca</label>
+        <select name="marca" required>
+            <option value="">Seleccione una marca</option>
+            <option value="Toyota">Toyota</option>
+            <option value="Ford">Ford</option>
+            <option value="Chevrolet">Chevrolet</option>
+            <option value="Honda">Honda</option>
+            <option value="Nissan">Nissan</option>
+            <option value="BMW">BMW</option>
+            <option value="Mercedes">Mercedes</option>
+            <option value="Volkswagen">Volkswagen</option>
+            <option value="Hyundai">Hyundai</option>
+            <option value="Otros">Otros</option>
+        </select>
     
     <label for="nombre">Nombre</label>
     <input name="nombre" type="text" required>
