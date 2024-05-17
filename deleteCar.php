@@ -1,5 +1,6 @@
 <?php
 require './logica/conexion.php';
+session_start(); 
 
 if (!isset($_GET['id'])) {
     header("Location: http://localhost/proyecto/Web-Page-Sales/index.php?error=No se encontró el elemento a eliminar");
@@ -12,6 +13,12 @@ $query = mysqli_query($conexion, $sql);
 
 if (!$row = mysqli_fetch_array($query)) {
     header("Location: http://localhost/proyecto/Web-Page-Sales/index.php?error=No se encontró el producto");
+    exit;
+}
+
+// Verifica si el usuario es el vendedor del coche o un administrador
+if (!isset($_SESSION['user_id']) || (($_SESSION['user_id'] != $row['vendedor_id']) && ($_SESSION['tipo'] != 'admin'))) {
+    header("Location: http://localhost/proyecto/readCar.php?id=" . $id . "&error=Acceso denegado");
     exit;
 }
 ?>
@@ -115,7 +122,7 @@ if (!$row = mysqli_fetch_array($query)) {
 <p>¿Estás seguro de que deseas eliminar el siguiente carro?</p>
 <ul>
     <li><strong>Marca:</strong> <?php echo htmlspecialchars($row['marca']); ?></li>
-    <li><strong>Nombre:</strong> <?php echo htmlspecialchars($row['vehiculo_nombre']); ?></li>
+    <li><strong>Nombre:</strong> <?php echo htmlspecialchars($row['nombre']); ?></li>
     <li><strong>Descripción:</strong> <?php echo htmlspecialchars($row['descripcion']); ?></li>
     <li><strong>Precio:</strong> <?php echo htmlspecialchars($row['precio']); ?></li>
 </ul>

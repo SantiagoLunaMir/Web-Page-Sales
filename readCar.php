@@ -1,4 +1,5 @@
 <?php
+session_start();
 /*http://localhost/proyecto/readCar.php?id=2*/
 require './logica/conexion.php';
 
@@ -91,6 +92,31 @@ if (!$row = mysqli_fetch_array($query)) {
             font-size: 1.5rem;
             font-weight: bold;
         }
+        .action-buttons {
+            margin-top: 1rem;
+            display: flex;
+            gap: 10px;
+        }
+        .action-buttons button {
+            padding: 10px 15px;
+            font-size: 1rem;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .edit-button {
+            background-color: #3498db;
+        }
+        .delete-button {
+            background-color: #e74c3c;
+        }
+        .edit-button:hover {
+            background-color: #2980b9;
+        }
+        .delete-button:hover {
+            background-color: #c0392b;
+        }
     </style>
 </head>
 <body>
@@ -101,19 +127,40 @@ if (!$row = mysqli_fetch_array($query)) {
         <a href="comprar.html">COMPRAR</a>
         <a href="nuevos.html">NUEVOS</a>
         <a href="usados.html">USADOS</a>
-        <a href="contacto.html" >CONTACTO</a>
-        <a href="login.html"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>
+        <a href="contacto.html">CONTACTO</a>
+        <?php
+        if (isset($_SESSION['user'])) {
+            echo '<a href="logout.php"><img src="logout.png" width="1.5%" height="0.75%" alt="Logout"></a>';
+        } else {
+            echo '<a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>';
+        }
+        ?>
     </nav>
 </header>
 
 <div class="container">
     <img src="imagenes/<?php echo htmlspecialchars($row['fotografia']); ?>" alt="Imagen del carro" class="car-image">
     <div class="car-details">
-        <h1><?php echo htmlspecialchars($row['marca'] . ' ' . htmlspecialchars($row['nombre'])); ?></h1>
+        <h1><?php echo htmlspecialchars($row['marca'] . ' ' . $row['nombre']); ?></h1>
         <p><?php echo htmlspecialchars($row['descripcion']); ?></p>
-        <p class="price">$<?php echo number_format(htmlspecialchars($row['precio']), 2); ?></p>
+        <p class="price">$<?php echo number_format($row['precio'], 2); ?></p>
         <p><strong>Estado:</strong> <?php echo htmlspecialchars($row['estado']); ?></p>
         <p><strong>Activo:</strong> <?php echo $row['activo'] ? 'Sí' : 'No'; ?></p>
+        <?php
+            if (isset($_GET['error'])) {
+                echo "<p style='color: red; text-align: center;'>" . htmlspecialchars($_GET['error']) . "</p>";
+            }
+        ?>
+        
+        <?php
+        // Verifica si el usuario es el vendedor del coche o un administrador
+        if (isset($_SESSION['user_id']) && (($_SESSION['user_id'] == $row['vendedor_id']) || ($_SESSION['tipo'] == 'admin'))) {
+            echo '<div class="action-buttons">';
+            echo '<button class="edit-button" onclick="location.href=\'updateCar.php?id=' . $id . '\'">Editar</button>';
+            echo '<button class="delete-button" onclick="location.href=\'deleteCar.php?id=' . $id . '\'">Eliminar</button>';
+            echo '</div>';
+        }
+        ?>
     </div>
 </div>
 </body>

@@ -52,7 +52,13 @@ if (!$row = mysqli_fetch_array($query)) {
             <a href="nuevos.html">NUEVOS</a>
             <a href="usados.html">USADOS</a>
             <a href="contacto.html" style="color: gray; font-size: 1.2vw;">CONTACTO</a>
-            <a href="login.html"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>
+            <?php
+        if (isset($_SESSION['user'])) {
+            echo '<a href="logout.php"><img src="logout.png" width="1.5%" height="0.75%" alt="Logout"></a>';
+        } else {
+            echo '<a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>';
+        }
+        ?>
         </div>
     </nav>
 </header>
@@ -74,7 +80,7 @@ if (!$row = mysqli_fetch_array($query)) {
     </select>
 
     <label for="nombre">Nombre</label>
-    <input name="nombre" type="text" value="<?php echo htmlspecialchars($row['vehiculo_nombre']); ?>" required>
+    <input name="nombre" type="text" value="<?php echo htmlspecialchars($row['nombre']); ?>" required>
 
     <label for="descripcion">Descripción</label>
     <textarea name="descripcion" required><?php echo htmlspecialchars($row['descripcion']); ?></textarea>

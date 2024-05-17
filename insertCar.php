@@ -1,10 +1,10 @@
 <?php
-    session_start();  // Iniciar sesión
+    session_start();  // Iniciar sesión solo una vez al principio
 
     // Comprobar si el usuario está logueado y tiene el rol adecuado
-    if (!isset($_SESSION['user']) || ($_SESSION['rol'] !== 'vendedor' && $_SESSION['rol'] !== 'admin')) {
+    if (!isset($_SESSION['user']) || ($_SESSION['tipo'] !== 'vendedor' && $_SESSION['tipo'] !== 'admin')) {
         // Redireccionar al index.php si no es vendedor ni admin
-        header("Location: index.php");
+        header("Location: index.php?error=Usuario no es vendedor");
         exit;
     }
 ?>
@@ -51,12 +51,18 @@
                 <a href="usados.html">USADOS</a>
                 <a href="#">VENDER</a>
                 <a href="contacto.html" style="color: gray; font-size: 1.2vw;">CONTACTO</a>
-                <a href="login.html"><img src="login.png" width="1.5%" height="0.75%" alt="Lupa"></a>
+                <?php
+                    if (isset($_SESSION['user'])) {
+                        echo '<a href="logout.php"><img src="logout.png" width="1.5%" height="0.75%" alt="Logout"></a>';
+                    } else {
+                        echo '<a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>';
+                    }
+                ?>
             </div>
         </nav>
     </header>
 
-    <h1>Insertar Carro</h1>
+    <h1>Vender Carro</h1>
     <form action="logica/insertCar.php" method="POST" enctype="multipart/form-data">
         <label for="marca">Marca</label>
         <select name="marca" required>

@@ -19,10 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Ejecutar la sentencia con los datos
         $stmt->execute($params);
 
-        header("Location: http://localhost/proyecto/Web-Page-Sales/index.php?success=Carro eliminado correctamente");
+        header("Location: http://localhost/proyecto/index.php?success=Carro eliminado correctamente");
         exit;
     } catch (PDOException $e) {
-        header("Location: http://localhost/proyecto/Web-Page-Sales/index.php?error=" . urlencode($e->getMessage()));
+        header("Location: http://localhost/proyecto/readCar.php?id=" . $id . urlencode($e->getMessage()));
         exit;
     }
 }
