@@ -22,13 +22,13 @@ $car_of_the_day = mysqli_fetch_assoc($result);
 </head>
 <body>
 
-    <header>
+<header>
         <nav>
             <div id="logo">
-            <a href="index.html"><img src="Logored.jpg" width="4%" height="3%" alt="Logo de REDCAR"></a>
-            <a href="index.html">REDCAR</a>
-            <a href="catalog.html">CATALOGO</a>
-            <a href="contacto.html">CONTACTO</a>
+            <a href="index.php"><img src="Logored.jpg" width="4%" height="3%" alt="Logo de REDCAR"></a>
+            <a href="index.php">REDCAR</a>
+            <a href="catalog.php">CATALOGO</a>
+            <a href="contacto.php">CONTACTO</a>
             <?php
                 if (isset($_SESSION['user'])) {
                     if ($_SESSION['tipo'] == 'admin' || $_SESSION['tipo'] == 'vendedor') {

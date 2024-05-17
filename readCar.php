@@ -121,22 +121,26 @@ if (!$row = mysqli_fetch_array($query)) {
 </head>
 <body>
 <header>
-    <nav id="logo">
-        <a href="index.html"><img src="Logored.jpg" width="4%" height="3%" alt="Logo de REDCAR"></a>
-        <a href="index.html">REDCAR</a>
-        <a href="comprar.html">COMPRAR</a>
-        <a href="nuevos.html">NUEVOS</a>
-        <a href="usados.html">USADOS</a>
-        <a href="contacto.html">CONTACTO</a>
-        <?php
-        if (isset($_SESSION['user'])) {
-            echo '<a href="logout.php"><img src="logout.png" width="1.5%" height="0.75%" alt="Logout"></a>';
-        } else {
-            echo '<a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>';
-        }
-        ?>
-    </nav>
-</header>
+        <nav>
+            <div id="logo">
+            <a href="index.php"><img src="Logored.jpg" width="4%" height="3%" alt="Logo de REDCAR"></a>
+            <a href="index.php">REDCAR</a>
+            <a href="catalog.php">CATALOGO</a>
+            <a href="contacto.php">CONTACTO</a>
+            <?php
+                if (isset($_SESSION['user'])) {
+                    if ($_SESSION['tipo'] == 'admin' || $_SESSION['tipo'] == 'vendedor') {
+                        echo '<a href="insertCar.php">VENDER</a>';
+                    }
+                    echo '<a href="cuenta.php">CUENTA</a>';
+                    echo '<a href="logout.php"><img src="logout.png" width="1.5%" height="0.75%" alt="Logout"></a>';
+                } else {
+                    echo '<a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>';
+                }
+            ?>
+            </div>
+        </nav>
+    </header>
 
 <div class="container">
     <img src="imagenes/<?php echo htmlspecialchars($row['fotografia']); ?>" alt="Imagen del carro" class="car-image">
