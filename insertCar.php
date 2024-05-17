@@ -1,3 +1,14 @@
+<?php
+    session_start();  // Iniciar sesión
+
+    // Comprobar si el usuario está logueado y tiene el rol adecuado
+    if (!isset($_SESSION['user']) || ($_SESSION['rol'] !== 'vendedor' && $_SESSION['rol'] !== 'admin')) {
+        // Redireccionar al index.php si no es vendedor ni admin
+        header("Location: index.php");
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

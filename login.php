@@ -35,8 +35,8 @@
                 <h2>Iniciar sesión</h2>
                 <form action="./logica/login.php" method="POST">
                     
-                    <label for="user">Nombre de usuario:</label>
-                    <input type="text" name="user" required><br><br>
+                    <label for="correo">Correo del usuario:</label>
+                    <input type="text" name="correo" required><br><br>
 
                     <label for="password">Contraseña:</label>
                     <input type="password" id="password" name="password" required><br><br>

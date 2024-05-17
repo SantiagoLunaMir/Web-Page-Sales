@@ -1,4 +1,5 @@
 <?php
+/*http://localhost/proyecto/readCar.php?id=2*/
 require './logica/conexion.php';
 
 if (!isset($_GET['id'])) {
@@ -108,7 +109,7 @@ if (!$row = mysqli_fetch_array($query)) {
 <div class="container">
     <img src="imagenes/<?php echo htmlspecialchars($row['fotografia']); ?>" alt="Imagen del carro" class="car-image">
     <div class="car-details">
-        <h1><?php echo htmlspecialchars($row['marca'] . ' ' . htmlspecialchars($row['vehiculo_nombre'])); ?></h1>
+        <h1><?php echo htmlspecialchars($row['marca'] . ' ' . htmlspecialchars($row['nombre'])); ?></h1>
         <p><?php echo htmlspecialchars($row['descripcion']); ?></p>
         <p class="price">$<?php echo number_format(htmlspecialchars($row['precio']), 2); ?></p>
         <p><strong>Estado:</strong> <?php echo htmlspecialchars($row['estado']); ?></p>

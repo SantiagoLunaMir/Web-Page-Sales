@@ -3,22 +3,27 @@ session_start();
 require 'conexion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $user = $_POST['user'];
+    $correo = $_POST['correo'];  // Usar correo para el login
     $password = $_POST['password'];
 
-    // Consulta SQL para verificar las credenciales
-    $sql = "SELECT * FROM usuarios WHERE user = '$user'";
-    $result = mysqli_query($conexion, $sql);
-
-    if ($result && mysqli_num_rows($result) > 0) {
-        $row = mysqli_fetch_assoc($result);
-        if ($password === $row['pass']) { // Comparar la contraseña en texto plano
+    // Usar consultas preparadas para prevenir inyección SQL
+    $stmt = $conexion->prepare("SELECT id, nombre, correo, contrasena, tipo FROM usuarios WHERE correo = ?");
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result && $result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+        echo $row['contrasena'];
+        echo "  ";
+        echo $password;
+        if ($password === $row['contrasena']) {
             // Las credenciales son válidas, iniciar sesión
-            $_SESSION['user'] = $user;
-            $_SESSION['rol'] = $row['Permisos'];
-            $_SESSION['saludo'] = "¡Hola, $user! Bienvenido, ¿Por dónde empezamos?.";
+            $_SESSION['user_id'] = $row['id'];  // Guardar id de usuario
+            $_SESSION['user_name'] = $row['nombre'];  // Guardar nombre de usuario
+            $_SESSION['user'] = $row['correo'];  // Guardar correo en sesión
+            $_SESSION['tipo'] = $row['tipo'];  // Guardar tipo de usuario
             header("Location: ../index.php"); // Redirigir a la página principal
-            exit(); // Asegurarse de que no se ejecute más código después de la redirección
+            exit(); 
         } else {
             // Contraseña incorrecta
             $error = "Contraseña incorrecta";
