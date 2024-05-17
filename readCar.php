@@ -42,23 +42,6 @@ if (!$row = mysqli_fetch_array($query)) {
             align-items: center;
             min-height: 100vh;
         }
-        header {
-            width: 100%;
-            background-color: #333;
-            padding: 1rem 0;
-        }
-        #logo {
-            display: inline-block;
-            vertical-align: middle;
-        }
-        #logo a {
-            text-decoration: none;
-            color: #fff;
-            margin: 0 10px;
-        }
-        #logo img {
-            margin-right: 10px;
-        }
         .container {
             background-color: #fff;
             padding: 2rem;
@@ -116,6 +99,23 @@ if (!$row = mysqli_fetch_array($query)) {
         }
         .delete-button:hover {
             background-color: #c0392b;
+        }
+        header {
+            width: 100%;
+            background-color: #000;
+            padding: 1rem 0;
+        }
+        #logo {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        #logo a {
+            text-decoration: none;
+            color: #000;
+            margin: 0 10px;
+        }
+        #logo img {
+            margin-right: 10px;
         }
     </style>
 </head>

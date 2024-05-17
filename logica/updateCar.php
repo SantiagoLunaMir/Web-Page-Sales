@@ -1,5 +1,11 @@
 <?php
 require 'conexion.php';
+session_start(); 
+// Verifica si el usuario es el vendedor del coche o un administrador
+if (!isset($_SESSION['user_id']) || (($_SESSION['user_id'] != $row['vendedor_id']) && ($_SESSION['tipo'] != 'admin'))) {
+    header("Location: http://localhost/proyecto/readCar.php?id=" . $id . "&error=Acceso denegado");
+    exit;
+}
 
 // Verificar la recepción de los datos necesarios
 if (!isset($_POST["id"]) || !isset($_POST["marca"]) || !isset($_POST["nombre"]) || !isset($_POST["descripcion"]) 

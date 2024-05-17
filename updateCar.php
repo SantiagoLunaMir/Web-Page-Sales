@@ -1,19 +1,26 @@
 <?php
-require './logica/conexion.php';
+    session_start();
+    require './logica/conexion.php';
 
-if (!isset($_GET['id'])) {
-    header("Location: http://localhost/proyecto/index.php?error=No se encontró el elemento a editar");
-    exit;
-}
+    if (!isset($_GET['id'])) {
+        header("Location: http://localhost/proyecto/index.php?error=No se encontró el elemento");
+        exit;
+    }
 
-$id = intval($_GET['id']);
-$sql = "SELECT * FROM coches WHERE id=" . $id;
-$query = mysqli_query($conexion, $sql);
+    $id = intval($_GET['id']);
+    $sql = "SELECT * FROM coches WHERE id=" . $id;
+    $query = mysqli_query($conexion, $sql);
 
-if (!$row = mysqli_fetch_array($query)) {
-    header("Location: http://localhost/proyecto/index.php?error=No se encontró el producto");
-    exit;
-}
+    if (!$row = mysqli_fetch_array($query)) {
+        header("Location: http://localhost/proyecto/index.php?error=No se encontró el producto");
+        exit;
+    }
+
+    // Verifica si el usuario es el vendedor del coche o un administrador
+    if (!isset($_SESSION['user_id']) || (($_SESSION['user_id'] != $row['vendedor_id']) && ($_SESSION['tipo'] != 'admin'))) {
+        header("Location: http://localhost/proyecto/readCar.php?id=" . $id . "&error=Acceso denegado");
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
