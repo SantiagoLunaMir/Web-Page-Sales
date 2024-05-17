@@ -1,5 +1,21 @@
 <?php
+session_start();
 require 'logica/conexion.php';
+
+// Inicializar variables para los filtros
+$estado_filtro = isset($_GET['estado']) ? $_GET['estado'] : '';
+$marca_filtro = isset($_GET['marca']) ? $_GET['marca'] : '';
+
+// Construir la consulta SQL con los filtros
+$sql = "SELECT * FROM coches WHERE 1=1";
+if ($estado_filtro) {
+    $sql .= " AND estado = '$estado_filtro'";
+}
+if ($marca_filtro) {
+    $sql .= " AND marca = '$marca_filtro'";
+}
+
+$result = mysqli_query($conexion, $sql);
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +65,13 @@ require 'logica/conexion.php';
             width: 100%;
             margin: 2rem auto;
         }
+        .filters {
+            margin-bottom: 1rem;
+        }
+        .filters form {
+            display: flex;
+            justify-content: space-between;
+        }
         .car-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -60,6 +83,11 @@ require 'logica/conexion.php';
             border-radius: 10px;
             padding: 1rem;
             text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .car-item:hover {
+            transform: scale(1.05);
         }
         .car-item img {
             width: 100%;
@@ -91,46 +119,77 @@ require 'logica/conexion.php';
 <body>
 
 <header>
-    <nav id="logo">
-        <a href="index.html"><img src="Logored.jpg" width="4%" height="3%" alt="Logo de REDCAR"></a>
-        <a href="index.html">REDCAR</a>
-        <a href="comprar.html">COMPRAR</a>
-        <a href="nuevos.html">NUEVOS</a>
-        <a href="usados.html">USADOS</a>
-        <a href="contacto.html">CONTACTO</a>
-        <?php
-        if (isset($_SESSION['user'])) {
-            echo '<a href="logout.php"><img src="logout.png" width="1.5%" height="0.75%" alt="Logout"></a>';
-        } else {
-            echo '<a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>';
-        }
-        ?>
-    </nav>
-</header>
+        <nav>
+            <div id="logo">
+            <a href="index.html"><img src="Logored.jpg" width="4%" height="3%" alt="Logo de REDCAR"></a>
+            <a href="index.html">REDCAR</a>
+            <a href="catalog.html">CATALOGO</a>
+                <a href="contacto.html">CONTACTO</a>
+                <?php
+                    if (isset($_SESSION['user'])) {
+                        if ($_SESSION['tipo'] == 'admin' || $_SESSION['tipo'] == 'vendedor') {
+                            echo '<a href="vender.php">VENDER</a>';
+                        }
+                        echo '<a href="cuenta.php">CUENTA</a>';
+                        echo '<a href="logout.php"><img src="logout.png" width="1.5%" height="0.75%" alt="Logout"></a>';
+                    } else {
+                        echo '<a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>';
+                    }
+                ?>
+            </div>
+        </nav>
+    </header>
     
-    <main class="container">
-        <div class="car-grid">
-        <?php
-        $sql = "SELECT * FROM coches";
-        $result = mysqli_query($conexion, $sql);
+<main class="container">
+    <div class="filters">
+        <form method="GET" action="catalog.php">
+            <div>
+                <label for="estado">Estado:</label>
+                <select name="estado" id="estado">
+                    <option value="">Todos</option>
+                    <option value="nuevo" <?php if ($estado_filtro == 'nuevo') echo 'selected'; ?>>Nuevo</option>
+                    <option value="usado" <?php if ($estado_filtro == 'usado') echo 'selected'; ?>>Usado</option>
+                </select>
+            </div>
+            <div>
+                <label for="marca">Marca:</label>
+                <select name="marca" id="marca">
+                    <option value="">Todas</option>
+                    <option value="Toyota" <?php if ($marca_filtro == 'Toyota') echo 'selected'; ?>>Toyota</option>
+                    <option value="Ford" <?php if ($marca_filtro == 'Ford') echo 'selected'; ?>>Ford</option>
+                    <option value="Chevrolet" <?php if ($marca_filtro == 'Chevrolet') echo 'selected'; ?>>Chevrolet</option>
+                    <option value="Honda" <?php if ($marca_filtro == 'Honda') echo 'selected'; ?>>Honda</option>
+                    <option value="Nissan" <?php if ($marca_filtro == 'Nissan') echo 'selected'; ?>>Nissan</option>
+                    <option value="BMW" <?php if ($marca_filtro == 'BMW') echo 'selected'; ?>>BMW</option>
+                    <option value="Mercedes" <?php if ($marca_filtro == 'Mercedes') echo 'selected'; ?>>Mercedes</option>
+                    <option value="Volkswagen" <?php if ($marca_filtro == 'Volkswagen') echo 'selected'; ?>>Volkswagen</option>
+                    <option value="Hyundai" <?php if ($marca_filtro == 'Hyundai') echo 'selected'; ?>>Hyundai</option>
+                    <option value="Otros" <?php if ($marca_filtro == 'Otros') echo 'selected'; ?>>Otros</option>
+                </select>
+            </div>
+            <button type="submit">Filtrar</button>
+        </form>
+    </div>
 
-        while ($row = mysqli_fetch_assoc($result)) {
-            echo '<div class="car-item" onclick="location.href=\'readCar.php?id=' . $row['id'] . '\'">';
-            echo '<img src="imagenes/' . htmlspecialchars($row['fotografia']) . '" alt="Imagen del coche">';
-            echo '<h2>' . htmlspecialchars($row['marca'] . ' ' . $row['nombre']) . '</h2>';
-            echo '<p>' . htmlspecialchars($row['descripcion']) . '</p>';
-            echo '<p class="price">$' . number_format($row['precio'], 2) . '</p>';
-            echo '</div>';
-        }
-        ?>
-        </div>
-    </main>
+    <div class="car-grid">
+    <?php
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo '<div class="car-item" onclick="location.href=\'readCar.php?id=' . $row['id'] . '\'">';
+        echo '<img src="imagenes/' . htmlspecialchars($row['fotografia']) . '" alt="Imagen del coche">';
+        echo '<h2>' . htmlspecialchars($row['marca'] . ' ' . $row['nombre']) . '</h2>';
+        echo '<p>' . htmlspecialchars($row['descripcion']) . '</p>';
+        echo '<p class="price">$' . number_format($row['precio'], 2) . '</p>';
+        echo '</div>';
+    }
+    ?>
+    </div>
+</main>
 
-    <footer> 
-        <div>
-            Contacto: ventas@redcar.com o utiliza nuestro teléfono: +52 12345678
-        </div>
-    </footer>
+<footer> 
+    <div>
+        Contacto: ventas@redcar.com o utiliza nuestro teléfono: +52 12345678
+    </div>
+</footer>
 
 </body>
 </html>

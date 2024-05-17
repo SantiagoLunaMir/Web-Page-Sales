@@ -1,3 +1,13 @@
+<?php
+session_start();
+require 'logica/conexion.php';
+
+// Obtener una imagen aleatoria de la base de datos
+$sql = "SELECT * FROM coches ORDER BY RAND() LIMIT 1";
+$result = mysqli_query($conexion, $sql);
+$car_of_the_day = mysqli_fetch_assoc($result);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,24 +25,21 @@
     <header>
         <nav>
             <div id="logo">
-                <a href="index.php"><img src="Logored.jpg" width="4%" height="3%" alt="Logo de REDCAR"></a>
-                <a href="index.php">REDCAR</a>
-                <a href="#"><img src="lupa.png" width="1.5%" height="0.75%" alt="Lupa"></a>
-                <a href="index.php" style="color: gray; font-size: 1.2vw;">INICIO</a>
-                <a href="comprar.html">COMPRAR</a>
-                <a href="nuevos.html">NUEVOS</a>
-                <a href="usados.html">USADOS</a>
-                <a href="#">VENDER</a>
-                <a href="contacto.html">CONTACTO</a>
-                <?php
-                    session_start();
-                    if (isset($_SESSION['user'])) {
-                        echo '<a href="cuenta.php">CUENTA</a>';
-                        echo '<a href="logout.php"><img src="logout.png" width="1.5%" height="0.75%" alt="Logout"></a>';
-                    } else {
-                        echo '<a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>';
+            <a href="index.html"><img src="Logored.jpg" width="4%" height="3%" alt="Logo de REDCAR"></a>
+            <a href="index.html">REDCAR</a>
+            <a href="catalog.html">CATALOGO</a>
+            <a href="contacto.html">CONTACTO</a>
+            <?php
+                if (isset($_SESSION['user'])) {
+                    if ($_SESSION['tipo'] == 'admin' || $_SESSION['tipo'] == 'vendedor') {
+                        echo '<a href="insertCar.php">VENDER</a>';
                     }
-                ?>
+                    echo '<a href="cuenta.php">CUENTA</a>';
+                    echo '<a href="logout.php"><img src="logout.png" width="1.5%" height="0.75%" alt="Logout"></a>';
+                } else {
+                    echo '<a href="login.php"><img src="login.png" width="1.5%" height="0.75%" alt="Login"></a>';
+                }
+            ?>
             </div>
         </nav>
     </header>
@@ -46,7 +53,11 @@
         <div class="car-text">
             Vehículo del día.
         </div>
-        <img src="BMWX1.jpeg" width="50%" height="50%" alt="Vehiculo del Dia">
+        <?php if ($car_of_the_day): ?>
+            <img src="imagenes/<?php echo htmlspecialchars($car_of_the_day['fotografia']); ?>" width="50%" height="50%" alt="Vehículo del Día">
+        <?php else: ?>
+            <p>No hay vehículos disponibles.</p>
+        <?php endif; ?>
     </div>
    <!-- Botón para obtener más información u otras acciones -->
 </section>
@@ -77,15 +88,7 @@
 </section>
 
 <footer> 
-    <div class=""><!-- Contenedor de contacto -->
-    <?php
-        //session_start();
-        if (isset($_SESSION['saludo'])) {
-            echo "<p>{$_SESSION['saludo']}</p>";
-            // Una vez que el saludo se ha mostrado, puedes eliminarlo de la sesión para que no se muestre de nuevo
-            unset($_SESSION['saludo']);
-        }
-    ?>
+    <div class="">
         <div class="">
             Contacto: ventas@redcar.com o utiliza nuestro teléfono: +52 12345678
         </div>
