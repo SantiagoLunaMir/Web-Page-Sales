@@ -2,7 +2,7 @@
 require './logica/conexion.php';
 
 if (!isset($_GET['id'])) {
-    header("Location: http://localhost/proyecto/Web-Page-Sales/index.php?error=No se encontró el elemento");
+    header("Location: http://localhost/proyecto/index.php?error=No se encontró el elemento");
     exit;
 }
 
@@ -11,7 +11,7 @@ $sql = "SELECT * FROM coches WHERE id=" . $id;
 $query = mysqli_query($conexion, $sql);
 
 if (!$row = mysqli_fetch_array($query)) {
-    header("Location: http://localhost/proyecto/Web-Page-Sales/index.php?error=No se encontró el producto");
+    header("Location: http://localhost/proyecto/index.php?error=No se encontró el producto");
     exit;
 }
 ?>
