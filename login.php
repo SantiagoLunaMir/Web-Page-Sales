@@ -15,10 +15,10 @@
     <header>
         <nav>
             <div id="logo">
-                <a href="index.html"><img src="Logored.jpg" width="4%" height="3%" alt="Logo de REDCAR"></a>
-                <a href="index.html">REDCAR</a>
+                <a href="index.php"><img src="Logored.jpg" width="4%" height="3%" alt="Logo de REDCAR"></a>
+                <a href="index.php">REDCAR</a>
                 <a href="#"><img src="lupa.png" width="1.5%" height="0.75%" alt="Lupa"></a>
-                <a href="index.html">INICIO</a>
+                <a href="index.php">INICIO</a>
                 <a href="comprar.html">COMPRAR</a>
                 <a href="nuevos.html">NUEVOS</a>
                 <a href="usados.html">USADOS</a>
