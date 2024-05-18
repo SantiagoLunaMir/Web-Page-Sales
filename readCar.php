@@ -152,7 +152,8 @@ if (!$row = mysqli_fetch_array($query)) {
         </nav>
     </header>
 
-<div class="container">
+    <div class="container">
+    <!-- Detalles del coche aquí -->
     <img src="imagenes/<?php echo htmlspecialchars($row['fotografia']); ?>" alt="Imagen del carro" class="car-image">
     <div class="car-details">
         <h1><?php echo htmlspecialchars($row['marca'] . ' ' . $row['nombre']); ?></h1>
@@ -176,6 +177,38 @@ if (!$row = mysqli_fetch_array($query)) {
         }
         ?>
     </div>
+</div>
+
+<!-- Agregar formulario para comentarios -->
+<div class="container">
+    <h2>Agregar Comentario</h2>
+    <form action="./logica/insertar_comentario.php" method="POST">
+        <input type="hidden" name="coche_id" value="<?php echo $id; ?>">
+        <textarea name="comentario" placeholder="Agrega un comentario..." required></textarea>
+        <button type="submit">Enviar Comentario</button>
+    </form>
+</div>
+
+<!-- Mostrar comentarios -->
+<div class="container">
+    <?php
+    // Consulta para obtener los comentarios del coche
+    $sql_comentarios = "SELECT comentarios.*, usuarios.nombre AS nombre_usuario FROM comentarios
+                        INNER JOIN usuarios ON comentarios.usuario_id = usuarios.id
+                        WHERE comentarios.coche_id = $id";
+    $result_comentarios = mysqli_query($conexion, $sql_comentarios);
+
+    if (mysqli_num_rows($result_comentarios) > 0) {
+        echo "<h2>Comentarios:</h2>";
+        echo "<ul>";
+        while ($comentario = mysqli_fetch_assoc($result_comentarios)) {
+            echo "<li><strong>{$comentario['nombre_usuario']}:</strong> {$comentario['comentario']}</li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "<p>No hay comentarios aún.</p>";
+    }
+    ?>
 </div>
 </body>
 </html>
