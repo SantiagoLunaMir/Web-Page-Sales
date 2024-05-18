@@ -1,10 +1,12 @@
 <?php
+session_start();
 require 'conexion.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!isset($_POST["id"])) {
-        header("Location: http://localhost/proyecto/index.php?error=ID no proporcionado");
-        exit;
+        $_SESSION['error_message'] = "ID no proporcionado.";
+        header("Location: ../cuenta.php");
+        exit();
     }
 
     $id = intval($_POST["id"]);
@@ -19,11 +21,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Ejecutar la sentencia con los datos
         $stmt->execute($params);
 
-        header("Location: http://localhost/proyecto/index.php?success=Carro eliminado correctamente");
-        exit;
+        $_SESSION['success_message'] = "Carro eliminado correctamente.";
+        header("Location: ../cuenta.php");
+        exit();
     } catch (PDOException $e) {
-        header("Location: http://localhost/proyecto/readCar.php?id=" . $id . urlencode($e->getMessage()));
-        exit;
+        $_SESSION['error_message'] = "Error al eliminar el carro: " . $e->getMessage();
+        header("Location: ../cuenta.php");
+        exit();
     }
 }
 ?>
