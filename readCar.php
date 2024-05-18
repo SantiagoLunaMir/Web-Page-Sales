@@ -29,6 +29,48 @@ if (!$row = mysqli_fetch_array($query)) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
+        /* Estilos para el contenedor del logo y texto */
+        #logo {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Estilos para el logo */
+        #logo img {
+            vertical-align: middle; 
+            margin-right: 10px; 
+        }
+
+        /* Barra de navegación */
+        header nav {
+            vertical-align: middle;
+        }
+        nav {
+            background-color: #ffffff;
+            color: #fff;
+            padding: 10px;
+            border-bottom: 3px solid #000000;
+        }
+        nav a {
+            text-decoration: none; 
+            color: #000; 
+            margin-right: 1vw; 
+            margin-left: 1vw;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline-block;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #fff;
+        }
         * {
             margin: 0;
             padding: 0;
@@ -42,11 +84,6 @@ if (!$row = mysqli_fetch_array($query)) {
             align-items: center;
             min-height: 100vh;
         }
-        header {
-            width: 100%;
-            background-color: #fff; /* Cambiar a blanco */
-            padding: 1rem 0;
-        }
 
         nav {
             background-color: #fff; /* Cambiar a blanco */
@@ -59,7 +96,7 @@ if (!$row = mysqli_fetch_array($query)) {
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             max-width: 800px;
             width: 100%;
-            margin: 2rem auto;
+            margin: 1rem auto;
         }
         .car-image {
             width: 100%;
@@ -110,22 +147,39 @@ if (!$row = mysqli_fetch_array($query)) {
         .delete-button:hover {
             background-color: #c0392b;
         }
-        header {
+
+
+
+        .containerForm {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 800px;
             width: 100%;
-            background-color: #000;
-            padding: 1rem 0;
+            margin: 1rem auto;
         }
-        #logo {
-            display: inline-block;
-            vertical-align: middle;
+
+        .containerForm form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
-        #logo a {
-            text-decoration: none;
-            color: #000;
-            margin: 0 10px;
+
+        .containerForm button {
+            align-self: flex-end;
+            padding: 0.5rem 1rem;
+            font-size: 1rem;
+            color: #fff;
+            background-color: #3498db;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        #logo img {
-            margin-right: 10px;
+
+        .containerForm button:hover {
+            background-color: #2980b9;
         }
     </style>
 </head>
@@ -180,8 +234,10 @@ if (!$row = mysqli_fetch_array($query)) {
 </div>
 
 <!-- Agregar formulario para comentarios -->
-<div class="container">
+<div class="containerForm" >
+
     <h2>Agregar Comentario</h2>
+    <br>
     <form action="./logica/insertar_comentario.php" method="POST">
         <input type="hidden" name="coche_id" value="<?php echo $id; ?>">
         <textarea name="comentario" placeholder="Agrega un comentario..." required></textarea>
@@ -200,6 +256,7 @@ if (!$row = mysqli_fetch_array($query)) {
 
     if (mysqli_num_rows($result_comentarios) > 0) {
         echo "<h2>Comentarios:</h2>";
+        echo "<br>";
         echo "<ul>";
         while ($comentario = mysqli_fetch_assoc($result_comentarios)) {
             echo "<li><strong>{$comentario['nombre_usuario']}:</strong> {$comentario['comentario']}</li>";

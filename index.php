@@ -54,7 +54,7 @@ $car_of_the_day = mysqli_fetch_assoc($result);
             Vehículo del día.
         </div>
         <?php if ($car_of_the_day): ?>
-            <img src="imagenes/<?php echo htmlspecialchars($car_of_the_day['fotografia']); ?>" width="50%" height="50%" alt="Vehículo del Día">
+            <img src="imagenes/<?php echo htmlspecialchars($car_of_the_day['fotografia']); ?>" width="50%" height="60%" alt="Vehículo del Día">
         <?php else: ?>
             <p>No hay vehículos disponibles.</p>
         <?php endif; ?>
