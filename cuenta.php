@@ -22,6 +22,24 @@ function get_product_count($conexion, $vendedor_id) {
     return $data['product_count'];
 }
 
+// Consulta SQL para seleccionar los mensajes de la base de datos
+$sql_messages = "SELECT id, nombre, email, mensaje FROM mensajes";
+$result_messages = mysqli_query($conexion, $sql_messages);
+
+// Verificar si la consulta tuvo éxito
+if ($result_messages) {
+    // Crear un array para almacenar los mensajes
+    $messages = array();
+
+    // Recorrer los resultados y guardarlos en el array $messages
+    while ($row = mysqli_fetch_assoc($result_messages)) {
+        $messages[] = $row;
+    }
+} else {
+    // Si la consulta falla, mostrar un mensaje de error
+    echo "Error al obtener los mensajes: " . mysqli_error($conexion);
+    // Puedes manejar el error de otra manera si lo prefieres
+}
 ?>
 
 <!DOCTYPE html>
@@ -184,6 +202,39 @@ function get_product_count($conexion, $vendedor_id) {
 
                         </tr>
                     <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <?php endif; ?>
+    <!-- Sección para administrar mensajes -->
+    <?php if ($_SESSION['tipo'] == 'admin' && !empty($messages)): ?>
+    <section id="admin-messages">
+        <div class="admin-container">
+            <h2>Mensajes de Usuarios</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Correo</th>
+                        <th>Mensaje</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php foreach ($messages as $message): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($message['nombre']); ?></td>
+                        <td><?php echo htmlspecialchars($message['email']); ?></td>
+                        <td><?php echo htmlspecialchars($message['mensaje']); ?></td>
+                        <td>
+                            <form action="logica/eliminar_mensaje.php" method="POST" style="display: inline;">
+                                <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
+                                <button type="submit" name="delete_message">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    <?php endforeach; ?>
                 </tbody>
             </table>
         </div>

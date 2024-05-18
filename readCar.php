@@ -42,12 +42,16 @@ if (!$row = mysqli_fetch_array($query)) {
             align-items: center;
             min-height: 100vh;
         }
-        header{
-            background-color: white;
+        header {
+            width: 100%;
+            background-color: #fff; /* Cambiar a blanco */
+            padding: 1rem 0;
         }
-        nav{
-            background-color: white;
+
+        nav {
+            background-color: #fff; /* Cambiar a blanco */
         }
+
         .container {
             background-color: #fff;
             padding: 2rem;

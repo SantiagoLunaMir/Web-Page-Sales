@@ -10,8 +10,7 @@ body {
   font-optical-sizing: auto;
   font-weight: <weight>;
   font-style: normal;
-  font-variation-settings:
-    "slnt" 0;
+  font-variation-settings:"slnt" 0;
 }
 /* Estilos para el contenedor del logo y texto */
 #logo {
@@ -302,4 +301,26 @@ footer {
     cursor: pointer; 
     display: inline-block;
     margin-bottom: 2.5%;
+}
+/* Estilos para los contenedores de los formularios */
+.settings-container,
+.admin-container,
+.vendedor-container {
+    margin: 0 auto; /* Centrar horizontalmente */
+    width: 50%; /* Ancho del contenedor */
+    text-align: center; /* Centrar el texto */
+}
+
+/* Estilos para los botones dentro de los formularios */
+.settings-container input[type="submit"],
+.admin-container input[type="submit"],
+.vendedor-container input[type="submit"] {
+    display: block; /* Convertir los botones en bloques para alinear verticalmente */
+    margin: 10px auto; /* Espaciado entre los botones y centrar horizontalmente */
+}
+
+/* Estilos para las imágenes dentro de las tablas */
+table img {
+    max-width: 100px; /* Tamaño máximo de la imagen */
+    height: auto; /* Altura automática */
 }

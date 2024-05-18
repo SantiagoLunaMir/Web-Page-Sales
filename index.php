@@ -81,11 +81,12 @@ $car_of_the_day = mysqli_fetch_assoc($result);
                 No lo dudes más y encuentra tu auto ideal o tu Vehículo de transporte idoeno. 
             </div>
             <div class="button-container">
-                <button class="btn-right" href="">MÁS</button>
+                <a class="btn-right" href="catalog.php">MÁS</a>
             </div>
         </div>
     </div>
 </section>
+
 
 <footer> 
     <div class="">
