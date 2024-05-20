@@ -234,15 +234,20 @@ if (!$row = mysqli_fetch_array($query)) {
 </div>
 
 <!-- Agregar formulario para comentarios -->
-<div class="containerForm" >
-
+<div class="containerForm">
     <h2>Agregar Comentario</h2>
     <br>
-    <form action="./logica/insertar_comentario.php" method="POST">
-        <input type="hidden" name="coche_id" value="<?php echo $id; ?>">
-        <textarea name="comentario" placeholder="Agrega un comentario..." required></textarea>
-        <button type="submit">Enviar Comentario</button>
-    </form>
+    <?php
+    if (isset($_SESSION['user'])) {
+        echo '<form action="./logica/insertar_comentario.php" method="POST">';
+        echo '<input type="hidden" name="coche_id" value="' . $id . '">';
+        echo '<textarea name="comentario" placeholder="Agrega un comentario..." required></textarea>';
+        echo '<button type="submit">Enviar Comentario</button>';
+        echo '</form>';
+    } else {
+        echo '<p>Necesitas una cuenta para agregar un comentario.</p>';
+    }
+    ?>
 </div>
 
 <!-- Mostrar comentarios -->

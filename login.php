@@ -9,6 +9,106 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #logo {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        #logo img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        #login-section {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .login-container h2 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .login-container form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .login-container label {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .login-container input[type="text"],
+        .login-container input[type="password"] {
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .login-container input[type="submit"] {
+            padding: 0.5rem;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-container input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .login-container p {
+            margin-top: 1rem;
+            color: #666;
+        }
+
+        .login-container a {
+            color: #3498db;
+        }
+
+        footer {
+            background-color: #fff;
+            width: 100%;
+            padding: 1rem 0;
+            text-align: center;
+            border-top: 3px solid #000000;
+        }
+
+        .contact-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-info {
+            color: #666;
+        }
+    </style>
 </head>
 <body>
 
