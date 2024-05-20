@@ -54,7 +54,7 @@ if ($result_messages) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Configuración de Usuario - REDCAR</title>
-    <link rel="stylesheet" href="styles.css">
+    <!--<link rel="stylesheet" href="styles.css">-->
     <link rel="icon" type="image/jpg" href="Logored.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -144,14 +144,14 @@ if ($result_messages) {
             padding: 0.5rem 1rem;
             font-size: 1rem;
             color: #fff;
-            background-color: #3498db;
+            background-color: #bb1c2c;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
         input[type="submit"]:hover, button:hover {
-            background-color: #2980b9;
+            background-color: #3498db;
         }
         table {
             width: 100%;
@@ -164,7 +164,7 @@ if ($result_messages) {
             border-bottom: 1px solid #ddd;
         }
         th {
-            background-color: #3498db;
+            background-color: #bb1c2c ;
             color: #fff;
         }
         tr:nth-child(even) {

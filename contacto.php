@@ -16,6 +16,45 @@ require 'logica/conexion.php';
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
+        /* Estilos generales */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        nav {
+            background-color: #ffffff;
+            padding: 10px;
+            border-bottom: 3px solid #000000;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: #000;
+            margin: 0 1vw;
+        }
+        
+        #logo {
+            display: inline-block;
+            vertical-align: middle;
+        }
+        
+        #logo img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+        
+        main {
+            width: 100%;
+            padding: 2rem;
+            max-width: 1400px;
+        }
+        
         .container {
             background-color: #fff;
             padding: 2rem;
@@ -25,44 +64,61 @@ require 'logica/conexion.php';
             width: 100%;
             margin: 2rem auto;
         }
-
+        
         .contact-container {
             display: flex;
             flex-wrap: wrap;
             gap: 2rem;
         }
-
+        
         .contact-left, .contact-right {
             flex: 1;
             min-width: 300px;
         }
-
+        
         .contact-contact {
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 1rem;
+            background-color: #C61C2C;
+            padding: 0.5rem;
+            border-radius: 10px;
+            color: #fff;
         }
-
+        
         .contact-txt {
             margin: 1rem 0;
+            background-color: #C61C2C;
+            padding: 0.5rem;
+            border-radius: 10px;
+            color: #fff;
         }
-
+        
         .contact-email li {
             list-style: none;
+            background-color: #C61C2C;
+            padding: 0.5rem;
+            border-radius: 10px;
+            color: #fff;
+            margin: 0.5rem 0;
         }
-
+        
         .title-frm {
             font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 1rem;
+            background-color: #C61C2C;
+            padding: 0.5rem;
+            border-radius: 10px;
+            color: #fff;
         }
-
+        
         label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: bold;
         }
-
+        
         input[type="text"], input[type="email"], input[type="tel"], textarea {
             width: 100%;
             padding: 0.75rem;
@@ -71,23 +127,23 @@ require 'logica/conexion.php';
             font-size: 1rem;
             margin-bottom: 1rem;
         }
-
+        
         .btn-right-v1 {
             padding: 0.75rem 1.5rem;
             font-size: 1rem;
             color: #fff;
-            background-color: #3498db;
+            background-color: #bb1c2c;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
             display: inline-block;
         }
-
+        
         .btn-right-v1:hover {
             background-color: #2980b9;
         }
-
+        
         .success-message {
             color: green;
             text-align: center;
@@ -137,7 +193,7 @@ require 'logica/conexion.php';
                     <div class="contact-email">
                         E-mail:
                         <div>
-                            <li>ventas@redcar.com </li>
+                            <li>ventas@redcar.com</li>
                             <li>asistencia@redcar.com</li>
                         </div>
                     </div>
