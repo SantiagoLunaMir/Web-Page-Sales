@@ -60,8 +60,8 @@ if ($result_messages) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-                /* Estilos para el contenedor del logo y texto */
-                #logo {
+        /* Estilos para el contenedor del logo y texto */
+        #logo {
             display: inline-block;
             vertical-align: middle;
         }
@@ -81,6 +81,9 @@ if ($result_messages) {
             color: #fff;
             padding: 10px;
             border-bottom: 3px solid #000000;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
         }
         nav a {
             text-decoration: none; 
@@ -169,6 +172,48 @@ if ($result_messages) {
         }
         tr:nth-child(even) {
             background-color: #f2f2f2;
+        }
+        @media (max-width: 768px) {
+            nav a {
+                margin: 5px 0;
+            }
+            .settings-container, .admin-container, .vendedor-container, .user-comments-container {
+                padding: 1rem;
+            }
+            table th, table td {
+                padding: 0.5rem;
+            }
+            table {
+                font-size: 0.9rem;
+            }
+            form input[type="submit"], form button {
+                align-self: center;
+                width: 100%;
+            }
+        }
+        @media (max-width: 480px) {
+            nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            nav a {
+                margin: 5px 0;
+            }
+            .settings-container, .admin-container, .vendedor-container, .user-comments-container {
+                width: 100%;
+                padding: 1rem;
+                margin: 0.5rem 0;
+            }
+            table th, table td {
+                padding: 0.5rem;
+            }
+            table {
+                font-size: 0.8rem;
+            }
+            form input[type="submit"], form button {
+                align-self: center;
+                width: 100%;
+            }
         }
     </style>
 </head>
