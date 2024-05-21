@@ -28,7 +28,6 @@ $tipo = $_FILES['imagen']['type'];
 $path = $_FILES['imagen']['tmp_name'];
 $vendedor_id = $_SESSION['user_id'];  // ID del vendedor desde la sesión
 
-// Lista de tipos de imagen permitidos
 $tipos_permitidos = ['image/gif', 'image/jpeg', 'image/pjpeg', 'image/png', 'image/svg+xml', 'image/webp'];
 
 if (!in_array($tipo, $tipos_permitidos)) {
@@ -36,7 +35,6 @@ if (!in_array($tipo, $tipos_permitidos)) {
     exit;
 }
 
-// Consulta preparada para inserción de datos en la base de datos
 $sql = "INSERT INTO coches (marca, nombre, descripcion, fotografia, activo, estado, precio, vendedor_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 try {
@@ -52,7 +50,6 @@ try {
     }
 } catch (Exception $e) {
     echo "Error al añadir el coche a la base de datos: " . $e->getMessage();
-    // Aquí podrías redirigir a una página de error o manejar el error de otra manera
     exit;
 }
 ?>

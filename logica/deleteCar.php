@@ -11,14 +11,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $id = intval($_POST["id"]);
 
-    // Consulta preparada para eliminar el carro de la base de datos
     $sql = "DELETE FROM coches WHERE id = ?";
     $params = [$id];
     try {
-        // Preparar la sentencia
         $stmt = $pdo->prepare($sql);
 
-        // Ejecutar la sentencia con los datos
         $stmt->execute($params);
 
         $_SESSION['success_message'] = "Carro eliminado correctamente.";

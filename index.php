@@ -19,6 +19,7 @@ $car_of_the_day = mysqli_fetch_assoc($result);
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    
 </head>
 <body>
 
@@ -63,8 +64,8 @@ $car_of_the_day = mysqli_fetch_assoc($result);
 </section>
 
 <section id="car-gallery">
-    <div class="rowsportal"><!-- Contenedor de reseña y coches laterales -->
-        <div class="left50"><!-- Contenedor de 3 coches laterales -->
+    <div class="rowsportal">
+        <div class="left50">
             <div class="car-gallery-img">
                 <img src="blazer.jpeg" alt="Coche imagen 1">
             </div>
@@ -75,7 +76,7 @@ $car_of_the_day = mysqli_fetch_assoc($result);
                 <img src="claseA.jpeg" alt="Coche imagen 3">
             </div>
         </div>
-        <div class="rigth50"><!-- Contenedor de reseña y boton más -->
+        <div class="rigth50">
             <div class="resume-gallery">
                 Descubre el mundo motor desde la compra y venta de coches y motocicletas a tu servicio, nuevos, usados, deportivos, chopers, coupes, sedandes, DE TODO.
                 No lo dudes más y encuentra tu auto ideal o tu Vehículo de transporte idoeno. 
@@ -86,7 +87,6 @@ $car_of_the_day = mysqli_fetch_assoc($result);
         </div>
     </div>
 </section>
-
 
 <footer> 
     <div class="">

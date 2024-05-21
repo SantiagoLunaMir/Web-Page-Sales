@@ -12,14 +12,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = mysqli_real_escape_string($conexion, $_POST["email"]);
     $rol = $_POST['rol'];
 
-    // Asignación de valor de rol
     if ($rol == 'vendedor') {
         $rol_valor = 'vendedor';
     } else {
-        $rol_valor = 'comprador'; // Valor por defecto para 'comprador'
+        $rol_valor = 'comprador'; //valor por defecto para comprador
     }
 
-    // Consulta SQL con variables adecuadas
     $sql = "INSERT INTO usuarios (nombre, correo, contrasena, tipo) VALUES ('$username', '$email', '$password', '$rol_valor')";
 
     try {
