@@ -329,7 +329,7 @@ if ($result_messages) {
                             <th>Marca</th>
                             <th>Nombre</th>
                             <th>Descripción</th>
-                            <th>Fotografía</th>
+                            <!--<th>Fotografía</th>-->
                             <th>Activo</th>
                             <th>Estado</th>
                             <th>Precio</th>
@@ -345,7 +345,7 @@ if ($result_messages) {
                                 <td><?php echo htmlspecialchars($car['marca']); ?></td>
                                 <td><?php echo htmlspecialchars($car['nombre']); ?></td>
                                 <td><?php echo htmlspecialchars($car['descripcion']); ?></td>
-                                <td><img src="<?php echo htmlspecialchars($car['fotografia']); ?>" alt="Fotografía" width="100"></td>
+                                <!--<td><img src="<?php echo htmlspecialchars($car['fotografia']); ?>" alt="Fotografía" width="100"></td>-->
                                 <td><?php echo $car['activo'] ? 'Sí' : 'No'; ?></td>
                                 <td><?php echo htmlspecialchars($car['estado']); ?></td>
                                 <td><?php echo htmlspecialchars($car['precio']); ?></td>
