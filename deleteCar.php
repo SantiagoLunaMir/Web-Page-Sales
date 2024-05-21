@@ -16,7 +16,6 @@ if (!$row = mysqli_fetch_array($query)) {
     exit;
 }
 
-// Verifica si el usuario es el vendedor del coche o un administrador
 if (!isset($_SESSION['user_id']) || (($_SESSION['user_id'] != $row['vendedor_id']) && ($_SESSION['tipo'] != 'admin'))) {
     header("Location: http://localhost/proyecto/readCar.php?id=" . $id . "&error=Acceso denegado");
     exit;

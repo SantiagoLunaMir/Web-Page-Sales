@@ -1,9 +1,7 @@
 <?php
 session_start();
 
-// Comprobar si el usuario está logueado y tiene el rol adecuado
 if (!isset($_SESSION['user']) || ($_SESSION['tipo'] !== 'vendedor' && $_SESSION['tipo'] !== 'admin')) {
-    // Redireccionar al index.php si no es vendedor ni admin
     header("Location: index.php?error=Usuario no es vendedor");
     exit;
 }

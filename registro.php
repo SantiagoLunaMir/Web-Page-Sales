@@ -1,12 +1,11 @@
 <?php
     session_start();
     if(isset($_SESSION['usuario'])){
-        //sesion activa
         header("Location: http://localhost/Proyecto_Web/index.php");
         return;
     }
 
-    $error_message = 'Error al procesar'; // Inicializa la variable de mensaje de error
+    $error_message = 'Error al procesar'; 
 
     if(isset($_GET['error'])) {
         $error_message = $_GET['error'];
@@ -192,7 +191,6 @@
     <section id="register-section">
         <h2>Registro de Usuario</h2>
         <?php 
-            // Mostrar mensajes de error
             if(!empty($error_message)) {
                 echo "<p style='color: red;'>$error_message</p>";
             }

@@ -243,18 +243,15 @@ if ($result_messages) {
     <section id="user-settings">
         <div class="settings-container">
             <h2>Configuración de Usuario</h2>
-            <!-- Mostrar mensaje de éxito si existe -->
             <?php if (isset($_SESSION['success_message'])): ?>
                 <p style="color: green;"><?php echo $_SESSION['success_message']; ?></p>
                 <?php unset($_SESSION['success_message']); ?>
             <?php endif; ?>
-            <!-- Mostrar mensaje de error si existe -->
             <?php if (isset($_SESSION['error_message'])): ?>
                 <p style="color: red;"><?php echo $_SESSION['error_message']; ?></p>
                 <?php unset($_SESSION['error_message']); ?>
             <?php endif; ?>
             <form action="./logica/actualizar_configuracion.php" method="POST">
-                <!-- Campos de entrada -->
                 <label for="nombre">Nombre:</label>
                 <input type="text" name="nombre" value="<?php echo htmlspecialchars($user['nombre']); ?>" required>
 
@@ -269,11 +266,9 @@ if ($result_messages) {
 
                 <input type="submit" value="Guardar cambios">
             </form>
-            <!-- Botón para eliminar la cuenta -->
             <form action="./logica/eliminar_cuenta.php" method="POST">
                 <input type="submit" value="Eliminar cuenta">
             </form>
-            <!-- Botón para cerrar sesión -->
             <form action="logout.php" method="POST">
                 <input type="submit" value="Cerrar sesión">
             </form>
@@ -368,7 +363,6 @@ if ($result_messages) {
         </section>
     <?php endif; ?>
 
-    <!-- Sección para administrar mensajes -->
     <?php if ($_SESSION['tipo'] == 'admin' && !empty($messages)): ?>
         <section id="admin-messages">
             <div class="admin-container">
@@ -402,7 +396,6 @@ if ($result_messages) {
         </section>
     <?php endif; ?>
 
-    <!-- Sección para mostrar los comentarios del usuario -->
     <section id="user-comments">
         <div class="user-comments-container">
             <h2>Mis Comentarios</h2>
@@ -416,7 +409,6 @@ if ($result_messages) {
                 </thead>
                 <tbody>
                     <?php
-                    // Consulta SQL para obtener los comentarios del usuario
                     $sql_user_comments = "SELECT comentarios.id AS comentario_id, coches.marca, coches.nombre AS nombre_coche, comentarios.comentario
                                     FROM comentarios
                                     INNER JOIN coches ON comentarios.coche_id = coches.id

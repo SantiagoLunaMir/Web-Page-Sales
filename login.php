@@ -148,7 +148,6 @@
 
                     <input type="submit" value="Iniciar sesión">
                     <?php 
-                // Verificar si hay un error y mostrarlo
                 if(isset($_GET['error'])) {
                     echo "<p style='color: red;'>{$_GET['error']}</p>";
                 }

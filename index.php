@@ -2,7 +2,6 @@
 session_start();
 require 'logica/conexion.php';
 
-// Obtener una imagen aleatoria de la base de datos
 $sql = "SELECT * FROM coches ORDER BY RAND() LIMIT 1";
 $result = mysqli_query($conexion, $sql);
 $car_of_the_day = mysqli_fetch_assoc($result);
@@ -49,7 +48,6 @@ $car_of_the_day = mysqli_fetch_assoc($result);
 <main>
 
 <section id="car-of-the-day">
-   <!-- Sección de "Coche del día" con una imagen grande y texto -->
     <div class="car-info">
         <div class="car-text">
             Vehículo del día.
@@ -60,7 +58,6 @@ $car_of_the_day = mysqli_fetch_assoc($result);
             <p>No hay vehículos disponibles.</p>
         <?php endif; ?>
     </div>
-   <!-- Botón para obtener más información u otras acciones -->
 </section>
 
 <section id="car-gallery">

@@ -29,19 +29,15 @@ if (!$row = mysqli_fetch_array($query)) {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <style>
-        /* Estilos para el contenedor del logo y texto */
         #logo {
             display: inline-block;
             vertical-align: middle;
         }
-
-        /* Estilos para el logo */
         #logo img {
             vertical-align: middle; 
             margin-right: 10px; 
         }
 
-        /* Barra de navegación */
         header nav {
             vertical-align: middle;
         }
@@ -207,7 +203,6 @@ if (!$row = mysqli_fetch_array($query)) {
     </header>
 
     <div class="container">
-    <!-- Detalles del coche aquí -->
     <img src="imagenes/<?php echo htmlspecialchars($row['fotografia']); ?>" alt="Imagen del carro" class="car-image">
     <div class="car-details">
         <h1><?php echo htmlspecialchars($row['marca'] . ' ' . $row['nombre']); ?></h1>
@@ -222,7 +217,6 @@ if (!$row = mysqli_fetch_array($query)) {
         ?>
         
         <?php
-        // Verifica si el usuario es el vendedor del coche o un administrador
         if (isset($_SESSION['user_id']) && (($_SESSION['user_id'] == $row['vendedor_id']) || ($_SESSION['tipo'] == 'admin'))) {
             echo '<div class="action-buttons">';
             echo '<button class="edit-button" onclick="location.href=\'updateCar.php?id=' . $id . '\'">Editar</button>';
@@ -233,7 +227,6 @@ if (!$row = mysqli_fetch_array($query)) {
     </div>
 </div>
 
-<!-- Agregar formulario para comentarios -->
 <div class="containerForm">
     <h2>Agregar Comentario</h2>
     <br>
@@ -250,10 +243,8 @@ if (!$row = mysqli_fetch_array($query)) {
     ?>
 </div>
 
-<!-- Mostrar comentarios -->
 <div class="container">
     <?php
-    // Consulta para obtener los comentarios del coche
     $sql_comentarios = "SELECT comentarios.*, usuarios.nombre AS nombre_usuario FROM comentarios
                         INNER JOIN usuarios ON comentarios.usuario_id = usuarios.id
                         WHERE comentarios.coche_id = $id";
