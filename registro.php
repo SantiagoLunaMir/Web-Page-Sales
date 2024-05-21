@@ -19,6 +19,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro - REDCAR</title>
+    <link rel="stylesheet" href="styles.css"> 
     <link rel="icon" type="image/jpg" href="Logored.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,13 +36,14 @@
         }
 
         header nav {
+            background-color: #ffffff;
+            color: #fff;
+            padding: 10px;
+            border-bottom: 3px solid #000000;
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            width: 100%;
-            background-color: #ffffff;
-            padding: 10px;
-            border-bottom: 3px solid #000000;
         }
 
         #logo {
@@ -50,61 +52,34 @@
         }
 
         #logo a {
-            margin-right: 10px;
             text-decoration: none;
             color: #000;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links li {
             margin-left: 1vw;
             margin-right: 1vw;
         }
 
-        .nav-links a {
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li {
+            margin-left: 1vw;
+            margin-right: 1vw;
+        }
+
+        nav ul li a {
             text-decoration: none;
             color: #000;
         }
 
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .hamburger .line {
-            width: 25px;
-            height: 3px;
-            background-color: #000;
-            margin: 4px 0;
-        }
-
-        /* Styles for smaller screens */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                text-align: center;
-                background-color: #ffffff;
-                position: absolute;
-                top: 60px;
-                left: 0;
-            }
-
-            .nav-links li {
-                margin: 10px 0;
-            }
-
-            .hamburger {
-                display: flex;
-            }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         main {
@@ -124,31 +99,31 @@
             width: 100%;
         }
 
-        .register-container h2 {
+        #register-section h2 {
             margin-bottom: 1rem;
             color: #333;
         }
 
-        .register-container form {
+        #register-section form {
             display: flex;
             flex-direction: column;
         }
 
-        .register-container label {
+        #register-section label {
             margin-bottom: 0.5rem;
             color: #666;
         }
 
-        .register-container input[type="text"],
-        .register-container input[type="email"],
-        .register-container input[type="password"] {
+        #register-section input[type="text"],
+        #register-section input[type="email"],
+        #register-section input[type="password"] {
             padding: 0.5rem;
             margin-bottom: 1rem;
             border: 1px solid #ddd;
             border-radius: 5px;
         }
 
-        .register-container input[type="submit"] {
+        #register-section input[type="submit"] {
             padding: 0.5rem;
             background-color: #3498db;
             color: #fff;
@@ -158,16 +133,16 @@
             transition: background-color 0.3s ease;
         }
 
-        .register-container input[type="submit"]:hover {
+        #register-section input[type="submit"]:hover {
             background-color: #2980b9;
         }
 
-        .register-container p {
+        #register-section p {
             margin-top: 1rem;
             color: #666;
         }
 
-        .register-container a {
+        #register-section a {
             color: #3498db;
         }
 
@@ -215,33 +190,31 @@
 
 <main>
     <section id="register-section">
-        <div class="register-container">
-            <h2>Registro de Usuario</h2>
-            <?php 
-                // Mostrar mensajes de error
-                if(!empty($error_message)) {
-                    echo "<p style='color: red;'>$error_message</p>";
-                }
-            ?>
-            <form action="./logica/registro.php" method="POST">
-                <label for="username">Nombre de usuario:</label>
-                <input type="text" id="username" name="username" required>
+        <h2>Registro de Usuario</h2>
+        <?php 
+            // Mostrar mensajes de error
+            if(!empty($error_message)) {
+                echo "<p style='color: red;'>$error_message</p>";
+            }
+        ?>
+        <form action="./logica/registro.php" method="POST">
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" id="username" name="username" required>
 
-                <label for="email">Correo electrónico:</label>
-                <input type="email" id="email" name="email" required>
+            <label for="email">Correo electrónico:</label>
+            <input type="email" id="email" name="email" required>
 
-                <label for="password">Contraseña:</label>
-                <input type="password" id="password" name="password" required>
+            <label for="password">Contraseña:</label>
+            <input type="password" id="password" name="password" required>
 
-                <p>Selecciona tu rol:</p>
-                <input type="radio" id="comprador" name="rol" value="comprador" checked>
-                <label for="comprador">Comprador</label><br>
-                <input type="radio" id="vendedor" name="rol" value="vendedor">
-                <label for="vendedor">Vendedor</label><br><br>
+            <p>Selecciona tu rol:</p>
+            <input type="radio" id="comprador" name="rol" value="comprador" checked>
+            <label for="comprador">Comprador</label><br>
+            <input type="radio" id="vendedor" name="rol" value="vendedor">
+            <label for="vendedor">Vendedor</label><br><br>
 
-                <input type="submit" value="Registrarse">
-            </form>
-        </div>
+            <input type="submit" value="Registrarse">
+        </form>
     </section>
 </main>
 
